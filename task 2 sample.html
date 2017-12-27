@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>rows</title>
+	<link rel="stylesheet" type="text/css" href="bootstrap.min.css">
+	
+	</style>
+	<style>
+	.col-lg-2{
+		margin:35px;
+	}
+	.second,.first,.zero{
+		margin:10px;
+	}
+	.gap{
+		margin:10px;
+	}
+	
+</style>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+	<script type="text/javascript">
+		var i=0;
+		
+
+		$(document).ready(function(){
+			$('.add').click(function(){
+				var opt=$('select').val()+" ";
+				var tex=$('#text').val()+" ";
+				i=i+1;
+
+				var row="<tr id="+i+"><td>"+i+"</td><td>"+opt+"</td><td>"+tex+"</td><td><input type='button' class='btn btn-default' value='Delete' id='del'></td><td><input type='button' value='Insert Row' class='btn btn-default' id='ins'></td></tr>";
+				$('table tbody').append(row);
+				number();
+			});
+			$('.table').on('click','#del',function(){
+				
+				 $(this).parents("tr").remove();
+                 number();
+            });
+			
+			$('.print').click(function(){
+                 var h=$('tr>td').text();
+                 $('.col-lg-4').html(h);
+            });
+			
+			$('.table').on('click','#ins',function(){
+				var op=$('select').val()+" ";
+				var te=$('#text').val()+" ";
+				i=$(this).closest('tr').attr('id');
+                i++;
+                var ro="<tr id="+i+"><td>"+i+"</td><td>"+op+"</td><td>"+te+"</td><td><input type='button' class='btn btn-default' value='Delete' id='del'></td><td><input type='button' id='ins' class='btn btn-default' value='Insert Row'></td></tr>";
+			    $(this.parentNode.parentNode).after(ro);
+			    number();
+
+			});
+			  
+
+			  function number(){
+                var c=-1;
+                $('table tr').each(function(){
+				$(this).find('td:first-child').text(c);
+            	c++;
+				});
+            }
+			
+		});
+		
+				
+	</script>
+</head>
+<body>
+	<div class="container">
+	<div class="row">
+			<div class="gap">
+			<b>ENTER THE DATA HERE::</b>
+            <select><option>CSE</option><option>IT</option><option>ECE</option><option>MECH</option></select></td>
+	        <input type="text" id="text"></td>
+	    	</div>
+	</div>
+
+	    <div class="row">
+	   	<div class="col-lg-5">
+		<table class="table">
+		<thead>
+		<tr>
+		<th>S.NO</th>
+		<th>DEPT</th>
+		<th>NAME</th>
+		<th>DELETE</th>
+		<th>INSERT</th>
+	    </tr>
+	    </thead>
+	    <tbody>
+	    	<tr>
+	    		
+
+	    	</tr>
+	    </tbody>
+	</table>
+	</div>
+	<div class="col-lg-2">
+        <div class="zero">
+		<button class="add btn" name="add">ADD</button>
+		</div>
+		
+		<div class="second">
+		<button class="print btn">PRINT</button>
+		</div>
+	</div>
+	<div class="col-lg-4">
+	</div>
+
+</div>
+</div>
+</body>
+</html>
